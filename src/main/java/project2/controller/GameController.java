@@ -56,10 +56,21 @@ public class GameController {
     public boolean isGameOver() {
         return game.getCurrentScene().isEndScene();
     }
-    
+
     // GUI get transition text for the choice
     public String processChoice(int num) {
         return game.processChoice(num);
+    }
+
+    // Get end scene text
+    public String getEndingText() {
+        game.checkEnding();
+        return game.getCurrentScene().getDisplayText(game.getPlayer().getTrait());
+    }
+
+    // Get current scene text
+    public String getCurrentSceneText() {
+        return game.getCurrentScene().getDisplayText(game.getPlayer().getTrait());
     }
 
 }

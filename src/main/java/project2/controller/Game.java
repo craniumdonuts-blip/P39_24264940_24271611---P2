@@ -147,9 +147,8 @@ public class Game {
         }
 
         // Ending extends scene
-        // Display changes text
+        
         Ending ending = (Ending) currentScene;
-        ending.display(player.getTrait());
         return true;
     }
 

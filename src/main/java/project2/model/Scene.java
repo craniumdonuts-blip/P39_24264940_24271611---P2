@@ -70,7 +70,6 @@ public class Scene implements Displayable {
     }
 
     // Return avaliable choices
-// Replace the existing getAvailableChoices(Player) method with this implementation
     public List<Choice> getAvailableChoices(Player player) {
         List<Choice> available = new ArrayList<>();
         java.util.Set<Integer> seenNumbers = new java.util.HashSet<>();
@@ -89,6 +88,24 @@ public class Scene implements Displayable {
             // If not available
         }
         return available;
+    }
+    
+    // Get scene and npc text to display in GUI
+    public String getDisplayText(TraitType trait) {
+        
+        StringBuilder text = new StringBuilder();
+        
+        if (npc != null) {
+            text.append(npc.getName()).append(" says:\n");
+            text.append(" \"").append(npc.getSpeak(trait)).append("\"\n");
+        }
+        
+        if (varDialogue.containsKey(trait)) {
+            text.append(varDialogue.get(trait));
+        } else {
+            text.append(sceneDesc);
+        }
+        return text.toString();
     }
 
     // Add choice
