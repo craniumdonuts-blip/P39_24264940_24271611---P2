@@ -103,7 +103,6 @@ public class Choice {
     }
 
     // choices available depending on player trait and item
-// Replace the existing isAvailable method with this exact implementation
     public boolean isAvailable(Player player) {
         if (player == null) {
             return false;

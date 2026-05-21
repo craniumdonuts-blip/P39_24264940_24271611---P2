@@ -35,12 +35,15 @@ public class Game {
     }
 
     // Start game for new player
-    public void start() {
+    // Change start to accept name and trait
+    public void start(String name, TraitType trait) {
+        // Set player, name & trait
         player = new Player();
-        selectTrait();
+        player.setName(name); 
+        player.setTrait(trait);
         initScenes();
         loadScene("s1");
-        run();
+        // Remove run as GUI will start game
     }
 
     // Start game for loaded player (continue game)
@@ -92,18 +95,20 @@ public class Game {
     }
 
     // Processing choice
-    public void processChoice(int num) {
+    public String processChoice(int num) {
         Choice choice = currentScene.getChoice(num, player);
 
 
         if (choice == null) {
-            System.out.println("[ERROR] choice");
-            return;
+            return null;
         }
+        
+        // String builder to append 
+        StringBuilder result = new StringBuilder();
 
         // Text after choice is made
         if (choice.getTransitionText() != null) {
-            System.out.println("\n" + choice.getTransitionText());
+            result.append(choice.getTransitionText());
         }
 
         // Update points
@@ -112,16 +117,18 @@ public class Game {
         // Add item (if in choice)
         for (Item item : choice.getGivenItems()) {
             player.getInventory().addItem(item);
-            System.out.println("you got: " + item.getName());
+            result.append("\nyou got: ").append(item.getName());
         }
 
         // Remove random item if choice triggers it
         if (choice.isRemovesItem()) {
             player.getInventory().removeRandomItem();
+            result.append("\nyou lost an item.");
         }
 
         // Next scene
         loadScene(choice.getNextSceneId());
+        return result.toString(); // Return resulting text
     }
 
     public boolean checkEnding() {
