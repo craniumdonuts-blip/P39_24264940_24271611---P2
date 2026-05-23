@@ -1,5 +1,7 @@
 package project2.controller;
 
+import project2.view.GameEventListener;
+import java.util.ArrayList;
 import project2.model.*;
 import java.util.List;
 
@@ -12,6 +14,26 @@ public class GameController {
     private Game game;
     private SaveManager saveManager;
 
+    // add gameeventlistener
+    private List<GameEventListener> listeners = new ArrayList<>();
+    
+    public void addGameEventListener(GameEventListener l){
+        listeners.add(l);
+    }
+    
+    // go through list of listeners on game events
+    private void fireSceneChanged(Scene scene){
+        for (GameEventListener l : listeners){
+            l.onSceneChanged(scene);
+        }
+    }
+    
+    private void fireGameOver(){
+        for (GameEventListener l : listeners){
+            l.onGameOver();
+        }
+    }
+    
     // New game controller 
     public GameController() {
         this.game = new Game();
@@ -59,7 +81,13 @@ public class GameController {
 
     // GUI get transition text for the choice
     public String processChoice(int num) {
-        return game.processChoice(num);
+        String transition = game.processChoice(num);
+        if (isGameOver()){
+            fireGameOver();
+        } else {
+            fireSceneChanged(game.getCurrentScene());
+        }
+        return transition;
     }
 
     // Get end scene text
