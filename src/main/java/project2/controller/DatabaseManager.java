@@ -25,7 +25,7 @@ public class DatabaseManager {
             connection = DriverManager.getConnection(DB_URL);
             // Creates tables if they do not exist
             createTables();
-            
+
         } catch (SQLException e) {
             System.out.println("Database connection failed: " + e.getMessage());
         }
@@ -47,27 +47,28 @@ public class DatabaseManager {
     // Creates saves table only if it doesn't already exist
     private void createTables() throws SQLException {
         // Check what already exists in the database
-        ResultSet rs = connection.getMetaData().getTables(null, null, "SAVES", null);
-        // rs.next() is true if table exists
-        if (!rs.next()) {
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate(
-                    "CREATE TABLE saves ("
-                    + "slot INT PRIMARY KEY, "
-                    + // PK: save slot number (1-5)
-                    "player_name VARCHAR(100), "
-                    + // Player's name
-                    "trait VARCHAR(20), "
-                    + // Trait Type
-                    "points INT, "
-                    + // Points
-                    "scene_id VARCHAR(50), "
-                    + // Current scene
-                    "inventory VARCHAR(500))" // Inventory
-            );
-            
-        } 
-            
-        
+        try (ResultSet rs = connection.getMetaData().getTables(null, null, "SAVES", null)) {
+            // rs.next() is true if table exists
+            if (!rs.next()) {
+                try (Statement stmt = connection.createStatement()) {
+                    stmt.executeUpdate(
+                            "CREATE TABLE saves ("
+                            + "slot INT PRIMARY KEY, "
+                            + // PK: save slot number (1-5)
+                            "player_name VARCHAR(100), "
+                            + // Player's name
+                            "trait VARCHAR(20), "
+                            + // Trait Type
+                            "points INT, "
+                            + // Points
+                            "scene_id VARCHAR(50), "
+                            + // Current scene
+                            "inventory VARCHAR(500))" // Inventory
+                    );
+
+                }
+
+            }
+        }
     }
 }

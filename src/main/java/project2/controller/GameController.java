@@ -64,6 +64,11 @@ public class GameController {
         return saveDAO.slotExists(slot);
     }
 
+    // Returns filled save slots for GUI to display
+    public List<Integer> listSaves() {
+        return saveDAO.listSaves();
+    }
+
     // For GUI buttons
     public List<Choice> getAvailableChoices() {
         return game.getCurrentScene().getAvailableChoices(game.getPlayer());

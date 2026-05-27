@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import project2.model.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -79,6 +81,17 @@ public class SaveDAO {
         } catch (SQLException e) {
             return false;
         }
+    }
+
+    // Returns list of slot numbers that have save data
+    public List<Integer> listSaves() {
+        List<Integer> filled = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            if (slotExists(i)) {
+                filled.add(i);
+            }
+        }
+        return filled;
     }
 
     // Stores the last loaded scene so GameController can resume from it
