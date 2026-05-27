@@ -12,32 +12,32 @@ import java.util.List;
 public class GameController {
 
     private Game game;
-    private SaveManager saveManager;
+    private SaveDAO saveDAO;
 
     // add gameeventlistener
     private List<GameEventListener> listeners = new ArrayList<>();
-    
-    public void addGameEventListener(GameEventListener l){
+
+    public void addGameEventListener(GameEventListener l) {
         listeners.add(l);
     }
-    
+
     // go through list of listeners on game events
-    private void fireSceneChanged(Scene scene){
-        for (GameEventListener l : listeners){
+    private void fireSceneChanged(Scene scene) {
+        for (GameEventListener l : listeners) {
             l.onSceneChanged(scene);
         }
     }
-    
-    private void fireGameOver(){
-        for (GameEventListener l : listeners){
+
+    private void fireGameOver() {
+        for (GameEventListener l : listeners) {
             l.onGameOver();
         }
     }
-    
+
     // New game controller 
     public GameController() {
         this.game = new Game();
-        this.saveManager = new SaveManager("saves");
+        this.saveDAO = new SaveDAO();
     }
 
     // Start new game
@@ -47,16 +47,21 @@ public class GameController {
 
     // Load saved data from file
     public void loadGame(int slot) {
-        Player loaded = saveManager.load(slot);
+        Player loaded = saveDAO.load(slot);
 
         if (loaded != null) {
-            game.start(loaded, saveManager.getLastLoadedSceneId());
+            game.start(loaded, saveDAO.getLastLoadedSceneId());
         }
     }
 
     // Write save
     public void saveGame(int slot) {
-        saveManager.save(game.getPlayer(), game.getCurrentScene().getSceneId(), slot);
+        saveDAO.save(game.getPlayer(), game.getCurrentScene().getSceneId(), slot);
+    }
+
+    // Check if save slot already exists
+    public boolean slotExists(int slot) {
+        return saveDAO.slotExists(slot);
     }
 
     // For GUI buttons
@@ -82,7 +87,7 @@ public class GameController {
     // GUI get transition text for the choice
     public String processChoice(int num) {
         String transition = game.processChoice(num);
-        if (isGameOver()){
+        if (isGameOver()) {
             fireGameOver();
         } else {
             fireSceneChanged(game.getCurrentScene());
