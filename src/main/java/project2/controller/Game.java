@@ -5,13 +5,13 @@ import project2.model.Scene;
 import project2.model.Player;
 import project2.model.Npc;
 import project2.model.Item;
-import project2.model.Inventory;
 import project2.model.Ending;
 import project2.model.Choice;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import project2.model.RegScene;
 
 /**
  *
@@ -151,11 +151,11 @@ public class Game {
         shield.add(new Item("Shield", "A well loved circle shield"));
 
         // Opening Scene s1 //
-        Scene s1 = new Scene("s1", """
+        Scene s1 = new RegScene("s1", """
                                \nYou wake slowly, the dawn light peers down through the trees, 
                                dissipating into layers of mist. A swift breeze flutters leaves, 
                                carrying subtle sounds of song, it seems you are not alone here. 
-                               Surrounded by forest, you notice a path stretching ahead of you.\n""", false);
+                               Surrounded by forest, you notice a path stretching ahead of you.\n""");
         // Choices
         Choice s1c1 = new Choice(1, "Follow the path", "s2", 10, null, noItems);
         s1c1.setTransitionText("As you walk the music fades and the mist lifts,\n"
@@ -198,10 +198,10 @@ public class Game {
         scenes.put(s1.getSceneId(), s1);
 
         // Scene 2 s2 //
-        Scene s2 = new Scene("s2", """
+        Scene s2 = new RegScene("s2", """
                                \nThrough the trees you make out a small cabin. Moss and
                                vines have overtaken the walls, which are half rubble...
-                               But strangely enough, the chimney is smoking.\n""", false);
+                               But strangely enough, the chimney is smoking.\n""");
         // Choices
         Choice s2c1 = new Choice(1, "Ignore the cabin", "s3", 5, null, noItems);
         s2c1.setTransitionText("You walk past the cabin.");
@@ -240,10 +240,10 @@ public class Game {
         scenes.put(s2.getSceneId(), s2);
 
         // Scene 3 s3 //
-        Scene s3 = new Scene("s3", """
+        Scene s3 = new RegScene("s3", """
                                \nThe path splits ahead of you, both ways look almost identical. 
                                Lamp posts line either side, flickering faintly in the dim light. 
-                               The air is still, and the usual sounds of the forest have gone quiet.\n""", false);
+                               The air is still, and the usual sounds of the forest have gone quiet.\n""");
 
         // Left — brave with dagger (checked at runtime via isAvailable)
         Choice s3c1brave = new Choice(1, "Left", "s4", 0, new Item("Crystal Dagger"), noItems);
@@ -289,13 +289,13 @@ public class Game {
         Npc innOwner = new Npc("Inn Owner", "Ah, a traveller! Don't get many of those passing through lately.\nI run the inn next door. Here, take this. First night's on me.");
         Npc halfling = new Npc("Halfling", "Oh... hello. Are you... new here? I don't see many travellers\ncome through. You seem nice.");
 
-        Scene s4 = new Scene("s4", """
+        Scene s4 = new RegScene("s4", """
                                \nThe path opens up and the trees thin out, giving way to a small 
                                town. Cobblestone streets wind between timber framed buildings, 
                                flower boxes line the windowsills and warm light flickers from within. 
                                The smell of wood smoke drifts through the air. A potions shop sits to your 
                                left, a tavern further down the road, and a stone bridge arches over 
-                               the river at the edge of town.\n""", false);
+                               the river at the edge of town.\n""");
 
         Choice s4c1;
         if (player.getTrait() == TraitType.CUNNING) {
@@ -354,7 +354,7 @@ public class Game {
         scenes.put(s4.getSceneId(), s4);
 
         // Scene 5 s5 - Ending //
-        Scene s5 = new Scene("s5", """
+        Scene s5 = new RegScene("s5", """
                                \nThe inn sits at the end of a cobblestone lane, warm light and 
                                the sound of chatter spilling out from within. You push open 
                                the door to find the place busy and lively, locals filling 

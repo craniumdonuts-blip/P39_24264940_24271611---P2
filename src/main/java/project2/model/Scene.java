@@ -1,9 +1,6 @@
 package project2.model;
 
-import project2.model.Player;
-import project2.model.Npc;
-import project2.model.Displayable;
-import project2.model.Choice;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +10,7 @@ import java.util.Map;
  *
  * @author ella
  */
-public class Scene implements Displayable {
+public abstract class Scene implements Displayable {
 
     private String sceneId;
     private String sceneDesc;
