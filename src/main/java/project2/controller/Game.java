@@ -1,6 +1,5 @@
 package project2.controller;
 
-import project2.controller.SaveManager;
 import project2.model.TraitType;
 import project2.model.Scene;
 import project2.model.Player;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  *
@@ -25,13 +23,10 @@ public class Game {
     private Player player;
     private Scene currentScene;
     private final Map<String, Scene> scenes;
-    private SaveManager saveManager;
-    private Inventory inventory;
 
     // Game constructor
     public Game() {
         this.scenes = new HashMap<>();
-        this.saveManager = new SaveManager("saves");
     }
 
     // Start game for new player
@@ -51,37 +46,6 @@ public class Game {
         this.player = loadPlayer;
         initScenes();
         loadScene(sceneId);
-        run();
-    }
-
-    // Gameplay loop
-    private void run() {
-        while (true) {
-            currentScene.display(player.getTrait());
-
-            // Stop if ending scene
-            if (checkEnding()) {
-                break;
-            }
-
-            List<Choice> available = currentScene.getAvailableChoices(player);
-            for (Choice c : available) {
-                System.out.println(" " + c.getNumber() + ". " + c.getChoiceDesc());
-            }
-            System.out.println(" 0. Save game");
-
-            int chosen = Choice.getInput();
-
-            // ask if player wants to save
-            if (chosen == 0) {
-                System.out.print("Save to slot (1-5): ");
-                int slot = Choice.getInput();
-                saveManager.save(player, currentScene.getSceneId(), slot);
-                // loop continues - player picks again
-            } else {
-                processChoice(chosen);
-            }
-        }
     }
 
     // Load a scene
@@ -89,9 +53,7 @@ public class Game {
         Scene next = scenes.get(sceneId);
         if (next != null) {
             currentScene = next;
-        } else {
-            System.out.println("[ERROR] scene " + sceneId);
-        }
+        } 
     }
 
     // Processing choice
@@ -150,43 +112,6 @@ public class Game {
         
         Ending ending = (Ending) currentScene;
         return true;
-    }
-
-    // Trait selection
-    private void selectTrait() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("enter your name: ");
-        String name = scanner.nextLine().trim();
-        player.setName(name);
-
-        System.out.println("who are you, traveller?");
-        System.out.println("  1. brave");
-        System.out.println("  2. cunning");
-        System.out.println("  3. timid");
-
-        while (true) {
-            System.out.print("\n> ");
-            try {
-                int choice = Integer.parseInt(scanner.nextLine().trim());
-                switch (choice) {
-                    case 1 ->
-                        player.setTrait(TraitType.BRAVE);
-                    case 2 ->
-                        player.setTrait(TraitType.CUNNING);
-                    case 3 ->
-                        player.setTrait(TraitType.TIMID);
-                    default -> {
-                        System.out.println("please enter 1, 2, or 3.");
-                        continue;
-                    }
-                }
-                System.out.println("you chose: " + player.getTrait());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("please enter 1, 2, or 3.");
-            }
-        }
     }
 
     // Add scenes
