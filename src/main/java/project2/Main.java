@@ -1,5 +1,8 @@
 package Project2;
 
+import project2.controller.GameController;
+import project2.view.GameWindow;
+
 /**
  *
  * @author ella
@@ -7,7 +10,8 @@ package Project2;
 public class Main {
 
     public static void main(String[] args) {
-        
-        // GUI will launch here
+        // launches game window
+        GameController controller = new GameController();
+        new GameWindow(controller);
     }
 }

@@ -53,6 +53,11 @@ public class GameController {
             game.start(loaded, saveDAO.getLastLoadedSceneId());
         }
     }
+    
+    // delete saved data from file 
+    public void deleteSave(int slot){
+        saveDAO.delete(slot);
+    }
 
     // Write save
     public void saveGame(int slot) {

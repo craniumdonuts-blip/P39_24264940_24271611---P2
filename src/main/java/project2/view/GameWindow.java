@@ -4,6 +4,7 @@
  */
 package project2.view;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -21,13 +22,13 @@ public class GameWindow extends JFrame{
     
     // holds all panels in a CardLayout and swaps between them
     public GameWindow(GameController controller){
-        MainMenuPanel mainMenu = new MainMenuPanel(controller);
+        MainMenuPanel mainMenu = new MainMenuPanel(controller, this);
         // add other panels here later
         
         // adds panels into card deck, giving it a name
         container.add(mainMenu, "MAIN_MENU");
         // adds card deck into JFrame
-        add(container);
+        add(container, BorderLayout.CENTER);
         
         setSize(800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
