@@ -15,7 +15,6 @@ import project2.controller.GameController;
 
 // Displays the ending scene: NPC name, ending text, and a return to main menu button.
 // Implements GameEventListener to receive onGameOver() from the controller.
-
 public class EndingPanel extends JPanel implements GameEventListener{
     private GameController controller;
     private GameWindow window;
@@ -33,7 +32,7 @@ public class EndingPanel extends JPanel implements GameEventListener{
         this.window = window;
         setLayout(new BorderLayout());
 
-        background = new BGPanel("/images/endingPlaceholder.png");
+        background = new BGPanel("/images/s5Placeholder.png");
         background.setLayout(new BorderLayout());
 
         initComponents();
@@ -83,7 +82,7 @@ public class EndingPanel extends JPanel implements GameEventListener{
         }
         
         // set background
-        background.setImage("/images/endingPlaceholder.png");
+        background.setImage("/images/s5Placeholder.png");
     }
     
     // fired by controller when an Ending scene is reached
