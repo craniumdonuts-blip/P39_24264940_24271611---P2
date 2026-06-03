@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Jun 03 22:12:26 NZST 2026:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-019e-8cf8-58fa-00000eeead98 
+Thu Jun 04 03:36:53 NZST 2026:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-019e-8e21-6281-00000eeead98 
 on database directory C:\Users\angie\OneDrive - AUT University\Year 2\COMP603\P2_FantasyGame\gameDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@105be200 
 Loaded from file:/C:/Users/angie/.m2/repository/org/apache/derby/derby/10.17.1.0/derby-10.17.1.0.jar
 java.vendor=Eclipse Adoptium

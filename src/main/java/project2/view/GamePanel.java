@@ -220,6 +220,13 @@ public class GamePanel extends JPanel implements GameEventListener{
         }
     }
     
+    // populate gamePanel
+    public void startGame(){
+        updateScene();
+        updateChoices();
+        updateBackground(controller.getCurrentScene().getSceneId());
+    }
+    
     // save popup
     private void toggleSavePopup(){
         if (savePopup.isVisible()){
@@ -316,6 +323,7 @@ public class GamePanel extends JPanel implements GameEventListener{
     @Override
     public void addNotify(){
         super.addNotify();
+        if (controller.getCurrentScene() == null) return;
         updateScene();
         updateChoices();
         updateBackground(controller.getCurrentScene().getSceneId());
