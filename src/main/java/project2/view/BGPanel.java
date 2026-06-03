@@ -21,6 +21,12 @@ public class BGPanel extends JPanel{
         this.image = new ImageIcon(getClass().getResource(imagePath)).getImage();
     }
     
+    //swaps the image at runtime depending on what scene the game is at
+    public void setImage(String imagePath){
+        this.image = new ImageIcon(getClass().getResource(imagePath)).getImage();
+        repaint(); //redraw with new image
+    }
+        
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

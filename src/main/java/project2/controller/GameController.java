@@ -115,5 +115,28 @@ public class GameController {
     public String getCurrentSceneText() {
         return game.getCurrentScene().getDisplayText(game.getPlayer().getTrait());
     }
-
+    
+    // returns NPC name for current scene, or null if no NPC
+    public String getCurrentNpcName(){
+        return game.getCurrentScene().getNpcName();
+    }
+    
+    // returns player inventory items for inventory overlay in GUI
+    public List<Item> getInventoryItems(){
+        return game.getPlayer().getInventory().getItems();
+    }
+    
+    // get transition text for a choice without advancing the scene
+    public String getTransitionText(int choiceNum){
+        Choice choice = game.getCurrentScene().getChoice(choiceNum, game.getPlayer());
+        if (choice == null) return null;
+        return choice.getTransitionText();
+    }
+    
+    // get the transition image key (e.g. s1c1) for mapping backgrounds
+    public String getTransitionImageKey(int choiceNum){
+        Choice choice = game.getCurrentScene().getChoice(choiceNum, game.getPlayer());
+        if (choice == null) return null;
+        return game.getCurrentScene().getSceneId() + "c" + choiceNum;
+    }
 }

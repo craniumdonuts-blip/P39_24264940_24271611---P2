@@ -128,5 +128,13 @@ public abstract class Scene implements Displayable {
     public boolean isEndScene() {
         return isEndScene;
     }
-
+    
+    // Get NPC name for GUI name tag
+    public String getNpcName(){
+        if(npc != null){
+            return npc.getName();
+        } else {
+            return null; //no NPC in this scene
+        }
+    }
 }
