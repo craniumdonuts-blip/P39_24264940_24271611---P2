@@ -307,11 +307,6 @@ public class GamePanel extends JPanel implements GameEventListener{
             inventoryPopup.add(itemList);
         }
         
-        // close button
-        JButton closeBtn = new JButton("Close");
-        closeBtn.addActionListener(e -> inventoryPopup.setVisible(false));
-        inventoryPopup.add(closeBtn);
-        
         inventoryPopup.revalidate();
         inventoryPopup.repaint();
         inventoryPopup.setVisible(true);
