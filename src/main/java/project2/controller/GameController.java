@@ -91,7 +91,7 @@ public class GameController {
 
     // Check if game is over
     public boolean isGameOver() {
-        return game.getCurrentScene().isEndScene();
+        return game.getCurrentScene() instanceof Ending;
     }
 
     // GUI get transition text for the choice
@@ -138,5 +138,11 @@ public class GameController {
         Choice choice = game.getCurrentScene().getChoice(choiceNum, game.getPlayer());
         if (choice == null) return null;
         return game.getCurrentScene().getSceneId() + "c" + choiceNum;
+    }
+    
+    // check ending
+    public void checkEnding(){
+        game.checkEnding();
+        fireGameOver();
     }
 }
