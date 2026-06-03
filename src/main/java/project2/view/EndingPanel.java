@@ -44,7 +44,6 @@ public class EndingPanel extends JPanel implements GameEventListener{
     private void initComponents() {
         endingText = new JTextArea();
         endingText.setEditable(false);
-        endingText.setOpaque(false); // so background shows through
         endingText.setLineWrap(true);
         endingText.setWrapStyleWord(true);
 
