@@ -3,7 +3,6 @@ package project2.view;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import project2.controller.GameController;

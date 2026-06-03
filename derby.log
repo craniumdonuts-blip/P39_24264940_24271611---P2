@@ -1,4 +1,4 @@
-Thu Jun 04 10:15:26 NZST 2026 Thread[#3,main,5,main] Cleanup action starting
+Thu Jun 04 10:28:51 NZST 2026 Thread[#3,main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to start database 'gameDB' with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@105be200, see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:115)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:141)
