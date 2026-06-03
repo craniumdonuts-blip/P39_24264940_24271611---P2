@@ -33,7 +33,6 @@ public class GamePanel extends JPanel implements GameEventListener{
     private JButton inventoryBtn;
     
     //dialogue area
-    private JLabel npcNameLabel; // hidden if no NPC
     private JTextArea dialogueBox; // shows scene text or transition text
     
     // choices. rebuilt every scene
@@ -103,20 +102,16 @@ public class GamePanel extends JPanel implements GameEventListener{
         sceneImages.put("s4c3", "/images/s4c3Placeholder.png");
     }
     
-    // builds buttons, dialogue box, npcNameLabel, choicePanel, nextBtn,
+    // builds buttons, dialogue box, choicePanel, nextBtn,
     // savePopup, inventoryPopup
     private void initComponents(){
         saveBtn = new JButton("Save");
         inventoryBtn = new JButton("Inventory");
-        npcNameLabel = new JLabel();
         dialogueBox = new JTextArea();
         nextBtn = new JButton("Next");
         nextBtn.setVisible(false);
         savePopup = new JPanel();
         inventoryPopup = new JPanel();
-        
-        // npc name label hidden first
-        npcNameLabel.setVisible(false);
         
         // both popups start hidden
         savePopup.setLayout(new BoxLayout(savePopup, BoxLayout.Y_AXIS));
@@ -140,7 +135,6 @@ public class GamePanel extends JPanel implements GameEventListener{
         JPanel dialogueArea = new JPanel();
         dialogueArea.setLayout(new BorderLayout());
         dialogueArea.setOpaque(false);
-        dialogueArea.add(npcNameLabel, BorderLayout.NORTH);
         dialogueArea.add(dialogueBox, BorderLayout.CENTER);
         background.add(dialogueArea, BorderLayout.SOUTH);
         
@@ -187,15 +181,8 @@ public class GamePanel extends JPanel implements GameEventListener{
         showingTransition = false;
     }
     
-    //rebuilds dialogue box and npc name for the current scene
+    //rebuilds dialogue box for the current scene
     private void updateScene(){
-        String npcName = controller.getCurrentNpcName();
-        if (npcName != null){
-            npcNameLabel.setText(npcName);
-            npcNameLabel.setVisible(true);
-        } else {
-            npcNameLabel.setVisible(false);
-        }
         dialogueBox.setText(controller.getCurrentSceneText());
     }
     
