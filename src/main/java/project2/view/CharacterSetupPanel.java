@@ -106,5 +106,6 @@ public class CharacterSetupPanel extends JPanel{
         String name = playerName.getText().trim();
         controller.startNewGame(name, selectedTrait);
         window.showPanel("GAME");
+        window.startGame();
     }
 }
