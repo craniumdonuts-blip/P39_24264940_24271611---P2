@@ -4,9 +4,7 @@
  */
 package project2.view;
 
-import project2.model.Choice;
 import project2.model.Scene;
-import java.util.List;
 
 /**
  *
