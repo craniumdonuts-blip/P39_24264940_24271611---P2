@@ -13,7 +13,7 @@ import project2.controller.GameController;
  * @author angie
  */
 
-// Displays the ending scene: NPC name, ending text, and a return to main menu button.
+// Displays the ending scene: ending text, and a return to main menu button.
 // Implements GameEventListener to receive onGameOver() from the controller.
 public class EndingPanel extends JPanel implements GameEventListener{
     private GameController controller;
@@ -21,7 +21,6 @@ public class EndingPanel extends JPanel implements GameEventListener{
     private BGPanel background;
     
     // dialogue area
-    private JLabel npcNameLabel; // shows innkeeper name
     private JTextArea endingText; // shows trait-specific ending text
     
     // navigation
@@ -42,11 +41,8 @@ public class EndingPanel extends JPanel implements GameEventListener{
         add(background);
     }
     
-    // builds npcNameLabel, endingText, mainMenuBtn and adds them to background
+    // builds endingText, mainMenuBtn and adds them to background
     private void initComponents() {
-        npcNameLabel = new JLabel();
-        npcNameLabel.setVisible(false); // hidden until populateEnding() sets it
-
         endingText = new JTextArea();
         endingText.setEditable(false);
         endingText.setOpaque(false); // so background shows through
@@ -60,26 +56,17 @@ public class EndingPanel extends JPanel implements GameEventListener{
         JPanel dialogueArea = new JPanel();
         dialogueArea.setLayout(new BorderLayout());
         dialogueArea.setOpaque(true);
-        dialogueArea.add(npcNameLabel, BorderLayout.NORTH);
         dialogueArea.add(endingText, BorderLayout.CENTER);
         dialogueArea.add(mainMenuBtn, BorderLayout.SOUTH);
         background.add(dialogueArea, BorderLayout.SOUTH);
     }
 
-    // reads ending text and NPC name from controller and updates the display
+    // reads ending text from controller and updates the display
     private void populateEnding() {
         // getEndingText() calls checkEnding() which loads good/neutral/bad
         // and returns the trait-specific ending text
         String text = controller.getEndingText();
         endingText.setText(text);
-
-        String npcName = controller.getCurrentNpcName();
-        if (npcName != null) {
-            npcNameLabel.setText(npcName);
-            npcNameLabel.setVisible(true);
-        } else {
-            npcNameLabel.setVisible(false);
-        }
         
         // set background
         background.setImage("/images/s5Placeholder.png");
