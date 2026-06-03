@@ -59,7 +59,7 @@ public class EndingPanel extends JPanel implements GameEventListener{
         // dialogue area at bottom
         JPanel dialogueArea = new JPanel();
         dialogueArea.setLayout(new BorderLayout());
-        dialogueArea.setOpaque(false);
+        dialogueArea.setOpaque(true);
         dialogueArea.add(npcNameLabel, BorderLayout.NORTH);
         dialogueArea.add(endingText, BorderLayout.CENTER);
         dialogueArea.add(mainMenuBtn, BorderLayout.SOUTH);
