@@ -18,12 +18,13 @@ public class GameWindow extends JFrame{
     // Used to show a component one at a time
     private CardLayout cardLayout = new CardLayout();
     private JPanel container = new JPanel(cardLayout);
+    private GamePanel game;
     
     // holds all panels in a CardLayout and swaps between them
     public GameWindow(GameController controller){
         MainMenuPanel mainMenu = new MainMenuPanel(controller, this);
         CharacterSetupPanel characterSetup = new CharacterSetupPanel(controller, this);
-        GamePanel game = new GamePanel(controller, this);
+        game = new GamePanel(controller, this);
         // add other panels here later
         
         // adds panels into card deck, giving it a name
@@ -44,5 +45,9 @@ public class GameWindow extends JFrame{
     // called by controller to switch between panels
     public void showPanel(String name){
         cardLayout.show(container, name);
+    }
+    
+    public void startGame(){
+        game.startGame();
     }
 }
