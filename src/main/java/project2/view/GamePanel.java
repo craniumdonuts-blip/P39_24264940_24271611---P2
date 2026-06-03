@@ -202,11 +202,24 @@ public class GamePanel extends JPanel implements GameEventListener{
     //rebuilds choice buttons for the current scene
     private void updateChoices(){
         choicePanel.removeAll();
-        for (Choice choice : controller.getAvailableChoices()){
-            JButton btn = new JButton(choice.getChoiceDesc());
-            btn.addActionListener(e -> showTransition(choice.getNumber()));
-            choicePanel.add(btn);
+        List<Choice> choices = controller.getAvailableChoices();
+
+        if (choices.isEmpty()) {
+            // no choices means end of scene, show a continue button
+            JButton continueBtn = new JButton("Continue");
+            continueBtn.addActionListener(e -> {
+                controller.checkEnding();
+                // onGameOver() will fire via the listener
+            });
+            choicePanel.add(continueBtn);
+        } else {
+            for (Choice choice : choices) {
+                JButton btn = new JButton(choice.getChoiceDesc());
+                btn.addActionListener(e -> showTransition(choice.getNumber()));
+                choicePanel.add(btn);
+            }
         }
+
         choicePanel.revalidate();
         choicePanel.repaint();
         choicePanel.setVisible(true);
