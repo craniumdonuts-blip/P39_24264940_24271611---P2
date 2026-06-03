@@ -25,13 +25,13 @@ public class GameWindow extends JFrame{
         MainMenuPanel mainMenu = new MainMenuPanel(controller, this);
         CharacterSetupPanel characterSetup = new CharacterSetupPanel(controller, this);
         game = new GamePanel(controller, this);
-        // add other panels here later
+        EndingPanel ending = new EndingPanel(controller, this);
         
         // adds panels into card deck, giving it a name
         container.add(mainMenu, "MAIN_MENU");
         container.add(characterSetup, "CHARACTER_SETUP");
         container.add(game, "GAME");
-        // add other panels here later
+        container.add(ending, "ENDING");
         
         // adds card deck into JFrame
         add(container, BorderLayout.CENTER);
