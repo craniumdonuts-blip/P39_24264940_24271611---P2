@@ -33,7 +33,8 @@ public class GamePanel extends JPanel implements GameEventListener{
     private JButton inventoryBtn;
     
     //dialogue area
-    private JTextArea dialogueBox; // shows scene text or transition text
+    // shows scene text or transition text
+    private JTextArea dialogueBox; 
     
     // choices. rebuilt every scene
     private JPanel choicePanel;
