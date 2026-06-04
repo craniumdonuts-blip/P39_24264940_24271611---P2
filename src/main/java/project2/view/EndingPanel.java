@@ -67,7 +67,7 @@ public class EndingPanel extends JPanel implements GameEventListener{
         endingText.setText(text);
         
         // set background
-        background.setImage("/images/s5Placeholder.png");
+        background.setImage("/images/s5.png");
     }
     
     // fired by controller when an Ending scene is reached

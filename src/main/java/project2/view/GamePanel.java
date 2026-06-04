@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements GameEventListener {
         setLayout(new BorderLayout());
 
         // set first background
-        background = new BGPanel("/images/s1Placeholder.png"); // jumps straight into s1
+        background = new BGPanel("/images/s1.png"); // jumps straight into s1
         background.setLayout(new BorderLayout());
 
         // add images and components
@@ -82,25 +82,25 @@ public class GamePanel extends JPanel implements GameEventListener {
     // sets scene backgrounds
     private void initSceneImages() {
         // scene backgrounds
-        sceneImages.put("s1", "/images/s1Placeholder.png");
-        sceneImages.put("s2", "/images/s2Placeholder.png");
-        sceneImages.put("s3", "/images/s3Placeholder.png");
-        sceneImages.put("s4", "/images/s4Placeholder.png");
-        sceneImages.put("s5", "/images/s5Placeholder.png");
+        sceneImages.put("s1", "/images/s1.png");
+        sceneImages.put("s2", "/images/s2.png");
+        sceneImages.put("s3", "/images/s3.png");
+        sceneImages.put("s4", "/images/s4.png");
+        sceneImages.put("s5", "/images/s5.png");
 
         //transition backgrounds (shown after choice, before next scene)
-        sceneImages.put("s1c1", "/images/s1c1Placeholder.png");
-        sceneImages.put("s1c2", "/images/s1c2Placeholder.png");
+        sceneImages.put("s1c1", "/images/s1c1.png");
+        sceneImages.put("s1c2", "/images/s1c2.png");
 
-        sceneImages.put("s2c1", "/images/s2c1Placeholder.png");
-        sceneImages.put("s2c2", "/images/s2c2Placeholder.png");
+        sceneImages.put("s2c1", "/images/s2c1.png");
+        sceneImages.put("s2c2", "/images/s2c2.png");
 
-        sceneImages.put("s3c1", "/images/s3c1Placeholder.png");
-        sceneImages.put("s3c2", "/images/s3c2Placeholder.png");
+        sceneImages.put("s3c1", "/images/s3c1.png");
+        sceneImages.put("s3c2", "/images/s3c2.png");
 
-        sceneImages.put("s4c1", "/images/s4c1Placeholder.png");
-        sceneImages.put("s4c2", "/images/s4c2Placeholder.png");
-        sceneImages.put("s4c3", "/images/s4c3Placeholder.png");
+        sceneImages.put("s4c1", "/images/s4c1.png");
+        sceneImages.put("s4c2", "/images/s4c2.png");
+        sceneImages.put("s4c3", "/images/s4c3.png");
     }
 
     // builds buttons, dialogue box, choicePanel, nextBtn,
