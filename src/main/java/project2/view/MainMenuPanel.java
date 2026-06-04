@@ -2,6 +2,7 @@
 package project2.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MainMenuPanel extends JPanel{
         setLayout(new BorderLayout());
         
         // create the background
-        background = new BGPanel("/images/MainMenuPlaceholder.png");
+        background = new BGPanel("/images/MainMenu&CharacterSetup.png");
         background.setLayout(new BorderLayout());
         
         // call initComponents to get menu buttons
@@ -44,6 +45,7 @@ public class MainMenuPanel extends JPanel{
         // set greetingLabel text
         greetingLabel.setText("Greetings, traveller!");
         greetingLabel.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+        greetingLabel.setForeground(Color.white);
 
         // create wrapper panel with FlowLayout centred
         JPanel greetingWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -88,6 +90,7 @@ public class MainMenuPanel extends JPanel{
         if (saves.isEmpty()){
             JLabel noSavesLabel = new JLabel("No saves found");
             noSavesLabel.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+            noSavesLabel.setForeground(Color.white);
             slotPanel.add(noSavesLabel);
         } else {
             for (int slot : saves){

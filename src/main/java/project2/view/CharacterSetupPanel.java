@@ -1,6 +1,7 @@
 package project2.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -40,7 +41,7 @@ public class CharacterSetupPanel extends JPanel {
         setLayout(new BorderLayout());
 
         // create the background
-        background = new BGPanel("/images/CharacterSetupPlaceholder.png");
+        background = new BGPanel("/images/MainMenu&CharacterSetup.png");
         background.setLayout(new BorderLayout());
 
         // call initComponents to get buttons
@@ -49,10 +50,12 @@ public class CharacterSetupPanel extends JPanel {
         // set enterNameLabel text
         enterNameLabel.setText("Enter your name: ");
         enterNameLabel.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+        enterNameLabel.setForeground(Color.white);
 
         // set askTraitLabel text
         askTraitLabel.setText("Who are you, traveller?");
         askTraitLabel.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+        askTraitLabel.setForeground(Color.white);
 
         // create name wrapper panel with FlowLayout centred
         JPanel nameWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER));
