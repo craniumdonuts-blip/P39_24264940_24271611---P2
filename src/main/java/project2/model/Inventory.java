@@ -51,32 +51,32 @@ public class Inventory {
         }
     }
 
-    // convert arraylist inventory to plain-text string for txt file saving
+// convert arraylist inventory to plain-text string for saving
     public String toSaveString() {
         String string = "";
-
         for (int i = 0; i < items.size(); i++) {
-            string = string + items.get(i).getName();
+            string = string + items.get(i).getName() + ":" + items.get(i).getDescription();
             if (i != items.size() - 1) {
                 string = string + ",";
             }
         }
-
         return string;
     }
 
-    // convert plain-text string version of inventory back to arraylist for txt file loading
+// convert plain-text string back to arraylist for loading
     public void fromSaveString(String data) {
         items.clear();
-
         if (data.equals("")) {
             return;
         }
-
         String[] parts = data.split(",");
         for (int i = 0; i < parts.length; i++) {
-            Item item = new Item(parts[i]);
-            items.add(item);
+            String[] itemParts = parts[i].split(":");
+            if (itemParts.length == 2) {
+                items.add(new Item(itemParts[0], itemParts[1]));
+            } else {
+                items.add(new Item(parts[i]));
+            }
         }
     }
 

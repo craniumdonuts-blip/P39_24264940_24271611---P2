@@ -107,6 +107,7 @@ public class MainMenuPanel extends JPanel{
             case "load":
                 controller.loadGame(slot);
                 window.showPanel("GAME");
+                window.startGame();
                 break;
             case "delete":
                 controller.deleteSave(slot);
