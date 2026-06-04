@@ -32,17 +32,8 @@ public abstract class Scene implements Displayable {
     // Different options for different traits
     public void display(TraitType trait) {
 
-        // Print NPC dialogue if this scene has an NPC
-        if (npc != null) {
-            System.out.println("\n" + npc.getName() + " says:");
-            System.out.println("  \"" + npc.getSpeak(trait) + "\"");
-        }
-        // Use trait variant if one exists
-        if (varDialogue.containsKey(trait)) {
-            System.out.println(varDialogue.get(trait));
-        } else {
-            System.out.println(sceneDesc);
-        }
+        // Emptied 
+
 
     }
 

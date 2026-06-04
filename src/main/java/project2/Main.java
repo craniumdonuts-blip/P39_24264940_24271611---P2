@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 import project2.controller.GameController;
 import project2.view.GameWindow;

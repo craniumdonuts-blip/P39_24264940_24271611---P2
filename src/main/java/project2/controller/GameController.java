@@ -53,9 +53,9 @@ public class GameController {
             game.start(loaded, saveDAO.getLastLoadedSceneId());
         }
     }
-    
+
     // delete saved data from file 
-    public void deleteSave(int slot){
+    public void deleteSave(int slot) {
         saveDAO.delete(slot);
     }
 
@@ -115,33 +115,38 @@ public class GameController {
     public String getCurrentSceneText() {
         return game.getCurrentScene().getDisplayText(game.getPlayer().getTrait());
     }
-    
+
     // returns NPC name for current scene, or null if no NPC
-    public String getCurrentNpcName(){
+    public String getCurrentNpcName() {
         return game.getCurrentScene().getNpcName();
     }
-    
+
     // returns player inventory items for inventory overlay in GUI
-    public List<Item> getInventoryItems(){
+    public List<Item> getInventoryItems() {
         return game.getPlayer().getInventory().getItems();
     }
-    
+
     // get transition text for a choice without advancing the scene
-    public String getTransitionText(int choiceNum){
+    public String getTransitionText(int choiceNum) {
         Choice choice = game.getCurrentScene().getChoice(choiceNum, game.getPlayer());
-        if (choice == null) return null;
-        return choice.getTransitionText();
+        if (choice == null) {
+            return "";
+        }
+        String text = choice.getTransitionText();
+        return text != null ? text : "";
     }
-    
+
     // get the transition image key (e.g. s1c1) for mapping backgrounds
-    public String getTransitionImageKey(int choiceNum){
+    public String getTransitionImageKey(int choiceNum) {
         Choice choice = game.getCurrentScene().getChoice(choiceNum, game.getPlayer());
-        if (choice == null) return null;
+        if (choice == null) {
+            return null;
+        }
         return game.getCurrentScene().getSceneId() + "c" + choiceNum;
     }
-    
+
     // check ending
-    public void checkEnding(){
+    public void checkEnding() {
         game.checkEnding();
         fireGameOver();
     }

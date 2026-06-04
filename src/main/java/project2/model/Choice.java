@@ -1,7 +1,6 @@
 package project2.model;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -87,19 +86,6 @@ public class Choice {
 
     public void setRequiresEmptyInventory(boolean val) {
         this.requiresEmptyInventory = val;
-    }
-
-    // get player input
-    public static int getInput() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\n> ");
-
-        try {
-            return Integer.parseInt(scanner.nextLine().trim());
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid number.");
-            return getInput(); //retry
-        }
     }
 
     // choices available depending on player trait and item
