@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Thu Jun 04 20:11:23 NZST 2026:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-019e-91af-defa-00000eeeb0d8 
-on database directory C:\Users\angie\OneDrive - AUT University\Year 2\COMP603\P2_FantasyGame\gameDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@105be200 
-Loaded from file:/C:/Users/angie/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+Fri Jun 05 13:22:27 NZST 2026:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-019e-955f-d79f-00000eee58c0 
+on database directory C:\Users\ella\OneDrive\Documents\NetBeansProjects\project2\gameDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@105be200 
+Loaded from file:/C:/Users/ella/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Eclipse Adoptium
-java.runtime.version=25.0.1+8-LTS
-user.dir=C:\Users\angie\OneDrive - AUT University\Year 2\COMP603\P2_FantasyGame
+java.runtime.version=25.0.2+10-LTS
+user.dir=C:\Users\ella\OneDrive\Documents\NetBeansProjects\project2
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0

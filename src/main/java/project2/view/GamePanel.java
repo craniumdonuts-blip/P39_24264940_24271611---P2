@@ -70,13 +70,36 @@ public class GamePanel extends JPanel implements GameEventListener {
 
         // allows popups to appear on top of background and game content
         JLayeredPane layers = new JLayeredPane();
+        layers.setLayout(null);
         layers.add(background, JLayeredPane.DEFAULT_LAYER); // sits at the bottom
         layers.add(inventoryPopup, JLayeredPane.POPUP_LAYER); // popups sit on top
         layers.add(savePopup, JLayeredPane.POPUP_LAYER);
 
         addComponentListener(new ResizeListener(background, savePopup, inventoryPopup));
 
-        add(layers);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                int w = getWidth();
+                int h = getHeight();
+                layers.setBounds(0, 0, w, h);
+                background.setBounds(0, 0, w, h);
+                layers.revalidate();
+                layers.repaint();
+            }
+
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent e) {
+                int w = getWidth();
+                int h = getHeight();
+                layers.setBounds(0, 0, w, h);
+                background.setBounds(0, 0, w, h);
+                layers.revalidate();
+                layers.repaint();
+            }
+        });
+
+        add(layers, BorderLayout.CENTER);
     }
 
     // sets scene backgrounds
@@ -267,11 +290,6 @@ public class GamePanel extends JPanel implements GameEventListener {
             });
             savePopup.add(newBtn);
         }
-
-        // close button
-        JButton closeBtn = new JButton("Close");
-        closeBtn.addActionListener(e -> savePopup.setVisible(false));
-        savePopup.add(closeBtn);
 
         // main menu button
         JButton mainMenuBtn = new JButton("Main Menu");
