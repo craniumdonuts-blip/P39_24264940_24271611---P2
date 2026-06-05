@@ -2,7 +2,6 @@ package project2.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -42,7 +41,7 @@ public class CharacterSetupPanel extends JPanel {
 
         // create the background
         background = new BGPanel("/images/MainMenu&CharacterSetup.png");
-        background.setLayout(new BorderLayout());
+        background.setLayout(new java.awt.GridBagLayout());
 
         // call initComponents to get buttons
         initComponents();
@@ -57,28 +56,27 @@ public class CharacterSetupPanel extends JPanel {
         askTraitLabel.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         askTraitLabel.setForeground(Color.white);
 
-        // create name wrapper panel with FlowLayout centred
-        JPanel nameWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        // create name wrapper panel
+        JPanel nameWrapper = new JPanel();
         nameWrapper.setOpaque(false); // so background shows
         nameWrapper.add(enterNameLabel);
         nameWrapper.add(playerName);
 
-        // create askTrait wrapper panel with FlowLayout centred
-        JPanel askTraitWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        askTraitWrapper.setOpaque(false); // so background shows
-        askTraitWrapper.add(askTraitLabel);
+        // create centre panel with both labels stacked
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new java.awt.GridLayout(2, 1, 0, 10));
+        centerPanel.setOpaque(false); // so background shows
+        centerPanel.add(askTraitLabel);
+        centerPanel.add(nameWrapper);
 
-        // create north panel so both name and trait show at the top
-        JPanel northPanel = new JPanel();
-        northPanel.setLayout(new BorderLayout());
-        northPanel.setOpaque(false); // so background shows
-        northPanel.add(askTraitWrapper, BorderLayout.NORTH);
-        northPanel.add(nameWrapper, BorderLayout.CENTER);
+        // add centre panel to background using GridBagLayout to centre vertically
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new java.awt.Insets(10, 10, 10, 10);
+        background.add(centerPanel, gbc);
 
-        // adding components to background panel
-        background.add(northPanel, BorderLayout.NORTH);
-
-        add(background);
+        add(background, BorderLayout.CENTER);
     }
 
     // builds the buttons
@@ -101,7 +99,12 @@ public class CharacterSetupPanel extends JPanel {
         timidBtn.addActionListener(e -> selectedTrait = TraitType.TIMID);
         confirmBtn.addActionListener(e -> confirmSelection());
 
-        background.add(btnPanel, BorderLayout.SOUTH);
+        // add buttons below centre panel
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new java.awt.Insets(10, 10, 10, 10);
+        background.add(btnPanel, gbc);
     }
 
     //called when confirm is clicked. moves to first game scene with name and trait
